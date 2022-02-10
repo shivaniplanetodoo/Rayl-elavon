@@ -13,6 +13,7 @@ function initiateLightbox(){
             return openLightbox(transactionToken);
         }
     });
+
       return false;
 }
 
@@ -33,7 +34,12 @@ function openLightbox(transactionToken) {
             showResult("declined", JSON.stringify(response, null, '\t'));
         },
         onApproval: function (response) {
+            console.log(response);
             showResult("approval", JSON.stringify(response, null, '\t'));
+            $.post("/lightboxccaddrecurringdevportal", response, function (data) {
+        //document.getElementById('token').value = data;
+            console.log(data);
+    });
         }
     };
     PayWithConverge.open(paymentFields, callback);
