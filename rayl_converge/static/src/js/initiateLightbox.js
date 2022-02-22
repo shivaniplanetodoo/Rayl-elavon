@@ -8,6 +8,7 @@ function initiateLightbox(){
       };
       $.post("/lightboxccsaledevportal", tokenRequest, function (data) {
         //document.getElementById('token').value = data;
+        console.log(data);
         transactionToken = data;
         if(transactionToken){
             return openLightbox(transactionToken);
@@ -31,6 +32,7 @@ function openLightbox(transactionToken) {
             showResult("cancelled", "");
         },
         onDeclined: function (response) {
+            console.log(response);
             showResult("declined", JSON.stringify(response, null, '\t'));
         },
         onApproval: function (response) {
